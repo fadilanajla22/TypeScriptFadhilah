@@ -13,6 +13,7 @@
  * 3. Determine the correct data type.
  * 4. Declare all variables in TypeScript.
  * 5. Display the product data using console.log.
+<<<<<<< HEAD
  */
 
 const productName: string = "Mechanical Keyboard RGB";
@@ -35,3 +36,6 @@ console.log("Quantity:", quantity);
 console.log("Premium Member:", isPremiumMember);
 console.log("Free Shipping:", isPremiumMember);
 console.log("Stock Available:", stockAvailable);
+=======
+ */
+>>>>>>> assign/main
