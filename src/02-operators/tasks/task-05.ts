@@ -33,3 +33,48 @@
  * - Calculate the remaining scholarship budget.
  * - Display whether the student is accepted.
  */
+
+// Student Information
+const studentName: string = "Alya Putri";
+const gpa: number = 3.89;
+const familyIncome: number = 4200000;
+const competitionCount: number = 4;
+const hasDisciplinaryRecord: boolean = false;
+const documentsComplete: boolean = true;
+
+// Scholarship Information
+const scholarshipBudget: number = 500000000;
+const scholarshipAmount: number = 12000000;
+
+// Comparison Operators
+const gpaRequirement = gpa >= 3.75;
+const incomeRequirement = familyIncome < 5000000;
+const competitionRequirement = competitionCount >= 3;
+const disciplineRequirement = !hasDisciplinaryRecord;
+const documentRequirement = documentsComplete;
+
+// Logical Operators
+const isQualified =
+  gpaRequirement &&
+  incomeRequirement &&
+  competitionRequirement &&
+  disciplineRequirement &&
+  documentRequirement;
+
+// Ternary Operator
+const receivedScholarship = isQualified ? scholarshipAmount : 0;
+
+// Remaining Budget
+const remainingBudget = scholarshipBudget - receivedScholarship;
+
+// Output
+console.log("=== Scholarship Selection Result ===");
+console.log("Student Name          :", studentName);
+console.log("GPA Requirement       :", gpaRequirement);
+console.log("Income Requirement    :", incomeRequirement);
+console.log("Competition Requirement:", competitionRequirement);
+console.log("Discipline Requirement:", disciplineRequirement);
+console.log("Document Requirement  :", documentRequirement);
+console.log("Qualified             :", isQualified ? "Yes" : "No");
+console.log("Scholarship Amount    : Rp" + receivedScholarship.toLocaleString("id-ID"));
+console.log("Remaining Budget      : Rp" + remainingBudget.toLocaleString("id-ID"));
