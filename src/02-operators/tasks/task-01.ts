@@ -13,7 +13,6 @@
  *  - Grand total
  *  - Final payment
  * 2. Display the calculation results.
-<<<<<<< HEAD
  */
 
 // Item prices
@@ -40,6 +39,3 @@ console.log("Total Drink Price      : Rp" + totalDrinkPrice);
 console.log("Grand Total            : Rp" + grandTotal);
 console.log("Discount               : Rp" + discount);
 console.log("Final Payment          : Rp" + finalPayment);
-=======
- */
->>>>>>> assign/main

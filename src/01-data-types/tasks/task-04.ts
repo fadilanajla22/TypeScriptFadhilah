@@ -9,7 +9,6 @@
  * 2. Implement a type that you defined on 3 books data.
  * 
  * display the book data using console.log.
-<<<<<<< HEAD
  */
 
 type Book = {
@@ -56,6 +55,3 @@ console.log(Book2);
 
 console.log("=== Book 3 ===");
 console.log(Book3);
-=======
- */
->>>>>>> assign/main

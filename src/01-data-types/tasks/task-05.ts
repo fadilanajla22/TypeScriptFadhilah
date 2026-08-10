@@ -8,7 +8,6 @@
  * 2. Implement a type that you defined on 3 attendance data.
  * 
  * display the attendance data using console.log.
-<<<<<<< HEAD
  */
 
 type employee = {
@@ -56,6 +55,3 @@ console.log({
     employee2,
     employee3
 });
-=======
- */
->>>>>>> assign/main

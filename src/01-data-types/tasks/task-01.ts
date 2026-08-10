@@ -4,11 +4,7 @@
  * The homeroom teacher entered the following information for one student. 
  * The student named Nadia Putri has a student ID of ST2026045. She earned 88.5 on assignments, 
  * 84 on the midterm exam, and 91.5 on the final exam. Because she submitted every assignment before the deadline, 
-<<<<<<< HEAD
  * she received an attendance score of 100. The school also records that Nadia participates in extracurricular activities,
-=======
- * she received an attendance score of 100. The school also records that Nadia participates in extracurricular activities, 
->>>>>>> assign/main
  * so this information should also be stored.
  * 
  * Task:
@@ -18,7 +14,6 @@
  * 3. Create the variable declarations using TypeScript.
  * 4. Display the student data using console.log.
  */
-<<<<<<< HEAD
 
 
 const studentName: string = "Nadia Putri";
@@ -38,5 +33,3 @@ console.log("Mid Term Exam Score:", midtermExamScore);
 console.log("Final Exam Score:", finalExamScore);
 console.log("Attendance Score:", attendanceScore);
 console.log("Participates In Extracurricular:", participatesInExtracurricular);
-=======
->>>>>>> assign/main
