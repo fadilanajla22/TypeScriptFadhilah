@@ -32,3 +32,30 @@
  *  - Implement the second screening only if the first screening is passed.
  *  - Display the correct result.
  */
+
+let studentName: string = "Fadhilah";
+let academicScore: number = 85;
+let achievementScore: number = 80;
+let interviewScore: number = 85;
+
+let firstScreening: boolean;
+let secondScreening: boolean;
+let result: string;
+
+// First screening
+firstScreening = academicScore >= 80 && achievementScore >= 75;
+
+if (firstScreening) {
+    // Second screening
+    secondScreening = interviewScore >= 80;
+
+    if (secondScreening) {
+        result = "Scholarship Approved";
+    } else {
+        result = "Passed First Screening, but Failed Second Screening";
+    }
+} else {
+    result = "Failed First Screening";
+}
+
+console.log(result);

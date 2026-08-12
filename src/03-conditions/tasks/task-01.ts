@@ -9,18 +9,52 @@
 // TODO: Return grade based on score:
 //   90-100 → "A", 80-89 → "B", 70-79 → "C", 60-69 → "D", below 60 → "F"
 function getGrade(score: number): string {
-  return ""; // replace with your code
+  if (score >= 90) {
+    return "A";
+  } else if (score >= 80) {
+    return "B";
+  } else if (score >= 70) {
+    return "C";
+  } else if (score >= 60) {
+    return "D";
+  } else {
+    return "F";
+  }
 }
 
 // TODO: Return the number of days in the given month (ignore leap years).
 // Use a switch statement. month is 1-12.
 function daysInMonth(month: number): number {
-  return 0; // replace with your code
+  switch (month) {
+    case 2:
+      return 28;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+      return 30;
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+      return 31;
+    default:
+      return 0;
+  }
 }
 
 // TODO: Return "positive", "negative", or "zero"
 function checkSign(num: number): string {
-  return ""; // replace with your code
+  if (num > 0) {
+    return "positive";
+  } else if (num < 0) {
+    return "negative";
+  } else {
+    return "zero";
+  }
 }
 
 // --- Tests (do not modify) ---
