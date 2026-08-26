@@ -26,3 +26,48 @@ const students = [
     { name: "Gita", score: 92 },
     { name: "Hana", score: 67 }
 ];
+
+let countA = 0;
+let countB = 0;
+let countC = 0;
+let countD = 0;
+let total = 0;
+let highest = students[0].score;
+let lowest = students[0].score;
+
+for (const student of students) {
+    const score = student.score;
+
+    // Count categories
+    if (score >= 90) {
+        countA++;
+    } else if (score >= 80) {
+        countB++;
+    } else if (score >= 70) {
+        countC++;
+    } else {
+        countD++;
+    }
+
+    // Total score
+    total += score;
+
+    // Highest and lowest
+    if (score > highest) {
+        highest = score;
+    }
+
+    if (score < lowest) {
+        lowest = score;
+    }
+}
+
+const average = total / students.length;
+
+console.log("Number of A students:", countA);
+console.log("Number of B students:", countB);
+console.log("Number of C students:", countC);
+console.log("Number of D students:", countD);
+console.log("Highest score:", highest);
+console.log("Lowest score:", lowest);
+console.log("Average score:", average);
