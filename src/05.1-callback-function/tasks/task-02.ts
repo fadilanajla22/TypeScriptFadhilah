@@ -1,3 +1,5 @@
+import { log } from "node:console";
+
 /**
  * Teacher has list of student score:
  */
@@ -39,18 +41,13 @@ function printScore(score: number) {
 }
 
 function showGrade(score: number) {
-    if (score >= 90) {
-        console.log(`score: ${score} - Grade: A`);
-    } else if (score >= 80) {
-        console.log(`score: ${score} - Grade: B`);
-    } else if (score >= 70) {
-        console.log(`score: ${score} - Grade: C`);
-    } else {
-        console.log(`score: ${score} - Grdae: D`);
-    }
+    let grade = `D`
+    if (score >= 90) grade = `A`
+    if (score >= 80 && score < 90) grade = `B`
+    if (score >= 70 && score < 80) grade = `C`
+    console.log(`Grade for score ${score} is ${grade}`);
 }
 
-
 // implementation of callback function
-processScores(scores, printScore)
-processScores(scores, showGrade)
+processScores(scores, printScore);
+processScores(scores, showGrade);
