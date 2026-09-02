@@ -27,3 +27,15 @@ registerStudent(`John Cena`, showRegistrationMessage)
  * create another function that display welcomming message for entire student!
  * Don't forget to implement callback function.
  * */
+
+
+// Function baru untuk pesan selamat datang
+function showWelcomeMessage(name: string): void {
+    console.log(`Welcome to our school, ${name}!`);
+}
+
+// Menampilkan registration message
+registerStudent("John Cena", showRegistrationMessage);
+
+// Menampilkan welcome message
+registerStudent("John Cena", showWelcomeMessage);
