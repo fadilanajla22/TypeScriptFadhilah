@@ -22,5 +22,21 @@
  * 3. Return the final grade.
  * 4. Call the function for each student.
  * 5. Display every student's final grade.
-
+ * 
  */
+
+function calculateFinalGrade(
+    assignment: number,
+    midterm: number,
+    finalExam: number
+): number {
+    return (assignment * 0.30) + (midterm * 0.30) + (finalExam * 0.40);
+}
+
+const alyaGrade = calculateFinalGrade(85, 80, 92);
+const budiGrade = calculateFinalGrade(78, 75, 81);
+const citraGrade = calculateFinalGrade(90, 88, 95);
+
+console.log("Alya's Final Grade:", alyaGrade);
+console.log("Budi's Final Grade:", budiGrade);
+console.log("Citra's Final Grade:", citraGrade);
