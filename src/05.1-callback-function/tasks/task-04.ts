@@ -20,3 +20,25 @@ const scores = [92, 68, 84, 73, 95, 61, 88];
  * 
  * Instead of creating four separate loops, create a reusable function that receives a callback responsible for transforming a score.
  */
+
+function processScores(scores: number[], callback: (score: number) => any) {
+    return scores.map(callback);
+}
+
+// 1. Passed
+console.log(processScores(scores, score => score >= 70));
+
+// 2. Grade
+console.log(processScores(scores, score =>
+    score >= 90 ? "A" :
+    score >= 80 ? "B" :
+    score >= 70 ? "C" : "D"
+));
+
+// 3. Bonus
+console.log(processScores(scores, score => score + 5));
+
+// 4. Excellent / Reguler
+console.log(processScores(scores, score =>
+    score > 90 ? "Excellent" : "Reguler"
+));

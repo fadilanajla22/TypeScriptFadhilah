@@ -40,18 +40,37 @@ const employees: Employee[] = [
 
 
 function calculateFinalSalary(selectedEmployee: Employee): EMPLOYEE_BONUS {
-    // implementation: this function return employee data with bonus and updated final salary
-    return;
+    let bonus = 0;
+
+    if (selectedEmployee.performance >= 90) bonus = selectedEmployee.salary * 0.15;
+    else if (selectedEmployee.performance >= 80) bonus = selectedEmployee.salary * 0.10;
+    else if (selectedEmployee.performance >= 70) bonus = selectedEmployee.salary * 0.05;
+
+    return {
+        ...selectedEmployee,
+        bonus: bonus
+    };
 }
+
 function getPerformanceStatus(selectedEmployee: Employee): EMPLOYEE_PERFORMANCE {
-    return;
+    let status: PERFORMANCE_STATUS;
+
+    if (selectedEmployee.performance >= 90) status = "Exceeds Expectations";
+    else if (selectedEmployee.performance >= 80) status = "Meets Expectations";
+    else status = "Needs Improvement";
+
+    return {
+        ...selectedEmployee,
+        status: status
+    };
 }
+
 
 function employeeProcess<T>(
     arr: Employee[],
     callback: (employee: Employee) => T
 ): T[] {
-    return;
+    return arr.map(callback);
 }
 
 const employeeWithFinalSalary = employeeProcess(employees, calculateFinalSalary)
