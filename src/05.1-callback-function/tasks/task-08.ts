@@ -46,3 +46,25 @@ const transactions = [
  *   - Pending transactions → 1%
  *   - Cancelled transactions → 0%
  */
+
+function processTransactions<T>(
+    arr: typeof transactions,
+    callback: (transaction: typeof transactions[number]) => T
+): T[] {
+    return arr.map(callback);
+}
+
+console.log(processTransactions(transactions, t => t.customer));
+
+
+console.log(processTransactions(transactions, t =>
+    t.amount >= 2000000 ? "HIGH VALUE" :
+    t.amount >= 1000000 ? "MEDIUM VALUE" :
+    "LOW VALUE"
+));
+
+console.log(processTransactions(transactions, t =>
+    t.status === "paid" ? t.amount * 0.02 :
+    t.status === "pending" ? t.amount * 0.01 :
+    0
+));
