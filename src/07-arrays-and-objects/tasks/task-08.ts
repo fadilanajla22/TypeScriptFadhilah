@@ -32,3 +32,33 @@ const employees = [
         ],
     },
 ];
+
+// 1. Calculate average score
+const averageScores = employees.map(employee => {
+    const total = employee.projects.reduce(
+        (sum, project) => sum + project.score,
+        0
+    );
+
+    return {
+        name: employee.name,
+        averageScore: total / employee.projects.length
+    };
+});
+
+
+// 2. Employees whose average score is above 85
+const above85 = averageScores.filter(
+    employee => employee.averageScore > 85
+);
+
+
+// 3. Employees who have at least one project below 80
+const below80 = employees.filter(employee =>
+    employee.projects.some(project => project.score < 80)
+);
+
+
+console.log("Average Scores:", averageScores);
+console.log("Above 85:", above85);
+console.log("Below 80:", below80);

@@ -25,4 +25,51 @@ const students = [
     },
 ];
 
+type Student = {
+    id: number;
+    name: string;
+    answers: string[];
+};
+
 const correctAnswers = ["A", "B", "C", "A", "B"];
+
+// 1. Calculate student score
+function calculateScore(student: Student) {
+    let correct = 0;
+
+    student.answers.forEach((answer, index) => {
+        if (answer === correctAnswers[index]) {
+            correct++;
+        }
+    });
+
+    return correct * 20;
+}
+
+// Tambahkan score ke setiap student
+const studentsWithScore = students.map(student => ({
+    ...student,
+    score: calculateScore(student)
+}));
+
+// 2. Get students that pass (> 70)
+const passedStudents = studentsWithScore.filter(student => student.score > 70);
+
+// 3. Find student with highest score
+const highestStudent = studentsWithScore.reduce((highest, student) => {
+    return student.score > highest.score ? student : highest;
+});
+
+// 4. Calculate class average score
+const totalScore = studentsWithScore.reduce((total, student) => {
+    return total + student.score;
+}, 0);
+
+const averageScore = totalScore / studentsWithScore.length;
+
+
+// Output
+console.log("Students with score:", studentsWithScore);
+console.log("Passed students:", passedStudents);
+console.log("Highest score:", highestStudent);
+console.log("Class average:", averageScore);
