@@ -45,3 +45,29 @@ const products = [
         stock: 3,
     },
 ];
+
+// 1. Display only products that are currently available
+const availableProducts = products.filter(product => product.stock > 0);
+console.log("1. Available products:", availableProducts);
+
+// 2. Display only products that are currently available
+const availableProducts2 = products.filter(product => product.stock > 0);
+console.log("2. Available products:", availableProducts2);
+
+// 3. Array containing only product names
+const productNames = products.map(product => product.name);
+console.log("3. Product names:", productNames);
+
+// 4. Calculate total value of all products currently in stock
+const totalValue = products.reduce(
+    (total, product) => total + (product.price * product.stock),
+    0
+);
+console.log("4. Total value:", totalValue);
+
+// 5. Sort available products from most expensive → cheapest
+const sortedProducts = products
+    .filter(product => product.stock > 0)
+    .sort((a, b) => b.price - a.price);
+
+console.log("5. Sorted products:", sortedProducts);
