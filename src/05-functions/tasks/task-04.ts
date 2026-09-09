@@ -26,19 +26,18 @@ function printAttendanceReport(attendances: { name: string; present: boolean }[]
     let totalAbsent = 0;
     let absentStudents: string[] = [];
 
-    for (let i = 0; i < attendances.length; i++) {
-        if (attendances[i].present === true) {
-            totalPresent++;
+    for (const attendance of attendances) {
+        if (attendance.present) {
+        totalPresent++;
         } else {
-            totalAbsent++;
-            absentStudents.push(attendances[i].name);
+        totalAbsent++;
+        absentStudents.push(attendance.name);
         }
     }
-
-    console.log("Attendance Report");
+    console.log("=== Attandance Report ===");
     console.log("Total Present:", totalPresent);
     console.log("Total Absent:", totalAbsent);
-    console.log("Absent Students:", absentStudents);
-}
+    console.log("Absent Student:", absentStudents.join(", "));
 
+}
 printAttendanceReport(attendances);

@@ -29,13 +29,8 @@ registerStudent(`John Cena`, showRegistrationMessage)
  * */
 
 
-// Function baru untuk pesan selamat datang
 function showWelcomeMessage(name: string): void {
     console.log(`Welcome to our school, ${name}!`);
 }
 
-// Menampilkan registration message
-registerStudent("John Cena", showRegistrationMessage);
-
-// Menampilkan welcome message
 registerStudent("John Cena", showWelcomeMessage);

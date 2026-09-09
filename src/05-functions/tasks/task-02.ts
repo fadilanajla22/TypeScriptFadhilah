@@ -24,9 +24,9 @@
 
 function showBonusStatus(employeeName: string, performanceScore: number): void {
     if (performanceScore >= 85) {
-        console.log(`${employeeName}: Bonus Approved`);
+        console.log(employeeName + ": Bonus Approved");
     } else {
-        console.log(`${employeeName}: Bonus Not Approved`);
+        console.log(employeeName + ": Bonus Not Approved");
     }
 }
 

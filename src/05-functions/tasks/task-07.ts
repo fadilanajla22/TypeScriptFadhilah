@@ -45,62 +45,27 @@ type Student = {
   active: boolean;
 };
 
-function countActiveStudents(students: Student[]): number {
-  let count = 0;
-
-  for (const student of students) {
-    if (student.active === true) {
-      count++;
-    }
-  }
-
-  return count;
+function countActiveStudents(students: Student[]) {
+  return students.filter(student => student.active === true).length;
 }
 
-function countInactiveStudents(students: Student[]): number {
-  let count = 0;
+function countInactiveStudents(students: Student[]){
+  return students.filter(student => student.active === false).length;
 
-  for (const student of students) {
-    if (student.active === false) {
-      count++;
-    }
-  }
-
-  return count;
 }
 
-function countStudentsByMajor(
-  students: Student[],
-  major: string
-): number {
-  let count = 0;
+function countStudentsByMajor(students: Student[], major: string){
+  return students.filter(student => student.major === major).length;
 
-  for (const student of students) {
-    if (student.major === major) {
-      count++;
-    }
-  }
-
-  return count;
 }
 
-function printEnrollmentReport(students: Student[]): void {
-  console.log("=== Enrollment Report ===");
+function printEnrollmentReport(students: Student[]){
+   console.log("=== Enrollment Report ===");
   console.log("Total Students:", students.length);
   console.log("Active Students:", countActiveStudents(students));
   console.log("Inactive Students:", countInactiveStudents(students));
-  console.log(
-    "Software Engineering Students:",
-    countStudentsByMajor(students, "Software Engineering")
-  );
-  console.log(
-    "Networking Students:",
-    countStudentsByMajor(students, "Networking")
-  );
-  console.log(
-    "Multimedia Students:",
-    countStudentsByMajor(students, "Multimedia")
-  );
+  console.log("Software Engineering Students:", countStudentsByMajor(students, "Software Engineering"));
+  console.log("Networking Students:", countStudentsByMajor(students, "Networking"));
+  console.log("Multimedia Students:", countStudentsByMajor(students, "Multimedia"));
 }
-
 printEnrollmentReport(students);

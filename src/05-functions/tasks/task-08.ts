@@ -54,112 +54,52 @@ const submissions = [
         score: 96
     }
 ];
+const PassingScore = 75;
 
-// 1. Menghitung total siswa
-function getTotalStudents(data: typeof submissions): number {
-    return data.length;
+type submit = {
+  student: string;
+  submitted: boolean;
+  score: number;
+};
+function getTotalStudents(submission: submit[]){
+    return submission.length;
+}
+function getSubmitedCount(submission: submit[]) {
+  return submission.filter(item => item.submitted === true).length;
+}
+function getMissingCount(submission: submit[]){
+    return submission.filter(item => item.submitted === false).length;
+}
+function getPassedCount(submission: submit[]){
+    return submission.filter(
+        item => item.submitted === true && item.score >= PassingScore).length;
+    
+}
+function getRevisionCount(submission: submit[]) {
+    return submission.filter(item => item.submitted === true && item.score < PassingScore).length;
+}
+function getAverageScore(submission: submit[]) {
+    const totalScore = submission.reduce((total, item) => total + item.score, 0);
+    return totalScore / submission.length;
 }
 
-// 2. Menghitung jumlah tugas yang dikumpulkan
-function getSubmittedCount(data: typeof submissions): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].submitted === true) {
-            count++;
-        }
-    }
-
-    return count;
+function getHighestScore(submission: submit[]) {
+    return Math.max(...submission.map(item => item.score));
 }
 
-// 3. Menghitung jumlah tugas yang tidak dikumpulkan
-function getMissingCount(data: typeof submissions): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].submitted === false) {
-            count++;
-        }
-    }
-
-    return count;
+function getLowestScore(submission: submit[]) {
+    return Math.min(...submission.map(item => item.score));
+}
+function displayReport(submission: submit[]) {
+    console.log("===== ASSIGNMENT REPORT =====");
+    console.log("Total students:", getTotalStudents(submission));
+    console.log("Submitted assignments:", getSubmitedCount(submission));
+    console.log("Missing assignments:", getMissingCount(submission));
+    console.log("Passed students:", getPassedCount(submission));
+    console.log("Students requiring revision:", getRevisionCount(submission));
+    console.log("Average score:", getAverageScore(submission));
+    console.log("Highest score:", getHighestScore(submission));
+    console.log("Lowest score:", getLowestScore(submission));
 }
 
-// 4. Menghitung jumlah siswa yang lulus
-function getPassedCount(data: typeof submissions): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].score >= 75) {
-            count++;
-        }
-    }
-
-    return count;
-}
-
-// 5. Menghitung jumlah siswa yang perlu revisi
-function getRevisionCount(data: typeof submissions): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].submitted === true && data[i].score < 75) {
-            count++;
-        }
-    }
-
-    return count;
-}
-
-// 6. Menghitung nilai rata-rata
-function getAverageScore(data: typeof submissions): number {
-    let total = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        total += data[i].score;
-    }
-
-    return total / data.length;
-}
-
-// 7. Mencari nilai tertinggi
-function getHighestScore(data: typeof submissions): number {
-    let highest = data[0].score;
-
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].score > highest) {
-            highest = data[i].score;
-        }
-    }
-
-    return highest;
-}
-
-// 8. Mencari nilai terendah
-function getLowestScore(data: typeof submissions): number {
-    let lowest = data[0].score;
-
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].score < lowest) {
-            lowest = data[i].score;
-        }
-    }
-
-    return lowest;
-}
-
-// Void function untuk menampilkan report
-function printReport(data: typeof submissions): void {
-    console.log("=== LMS ASSIGNMENT REPORT ===");
-    console.log("Total Students:", getTotalStudents(data));
-    console.log("Submitted Assignments:", getSubmittedCount(data));
-    console.log("Missing Assignments:", getMissingCount(data));
-    console.log("Passed Students:", getPassedCount(data));
-    console.log("Students Requiring Revision:", getRevisionCount(data));
-    console.log("Average Score:", getAverageScore(data));
-    console.log("Highest Score:", getHighestScore(data));
-    console.log("Lowest Score:", getLowestScore(data));
-}
-
-printReport(submissions);
+displayReport(submissions);

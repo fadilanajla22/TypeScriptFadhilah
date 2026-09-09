@@ -93,203 +93,125 @@ const enrollments = [
     }
 ];
 
-// 1. Total enrollments
-function getTotalEnrollments(data: typeof enrollments): number {
-    return data.length;
+type Enrollment = {
+    student: string;
+    course: string;
+    completed: boolean;
+    score: number;
+    duration: number;
+};
+function getTotalEnrollments(enrollments: Enrollment[]): number {
+    return enrollments.length;
 }
-
-// 2. Completed enrollments
-function getCompletedEnrollments(data: typeof enrollments): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].completed === true) {
-            count++;
-        }
-    }
-
-    return count;
+function getCompletedEnrollments(enrollments: Enrollment[]): number {
+    return enrollments.filter(
+        enrollment => enrollment.completed === true
+    ).length;
 }
-
-// 3. Incomplete enrollments
-function getIncompleteEnrollments(data: typeof enrollments): number {
-    return getTotalEnrollments(data) - getCompletedEnrollments(data);
+function getIncompleteEnrollments(enrollments: Enrollment[]): number {
+    return enrollments.filter(
+        enrollment => enrollment.completed === false
+    ).length;
 }
+function getCompletionPercentage(enrollments: Enrollment[]): number {
+    const total = getTotalEnrollments(enrollments);
+    const completed = getCompletedEnrollments(enrollments);
 
-// 4. Completion percentage
-function getCompletionPercentage(data: typeof enrollments): number {
-    return (getCompletedEnrollments(data) / getTotalEnrollments(data)) * 100;
+    return (completed / total) * 100;
 }
-
-// 5. Highest score
-function getHighestScore(data: typeof enrollments): number {
-    let highest = data[0].score;
-
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].score > highest) {
-            highest = data[i].score;
-        }
-    }
-
-    return highest;
+function getHighestScore(enrollments: Enrollment[]): number {
+    return Math.max(
+        ...enrollments.map(enrollment => enrollment.score)
+    );
 }
-
-// 6. Lowest score
-function getLowestScore(data: typeof enrollments): number {
-    let lowest = data[0].score;
-
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].score < lowest) {
-            lowest = data[i].score;
-        }
-    }
-
-    return lowest;
+function getLowestScore(enrollments: Enrollment[]): number {
+    return Math.min(...enrollments.map(enrollment => enrollment.score));
 }
-
-// 7. Average score
-function getAverageScore(data: typeof enrollments): number {
-    let total = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        total += data[i].score;
-    }
-
-    return total / getTotalEnrollments(data);
+function getAverageScore(enrollments: Enrollment[]): number {
+    const totalScore = enrollments.reduce(
+        (total, enrollment) => total + enrollment.score,0);
+    return totalScore / enrollments.length;
 }
-
-// 8. Students with passing scores
-function getPassingStudents(data: typeof enrollments): string[] {
-    let students: string[] = [];
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].score >= 75) {
-            students.push(data[i].student);
-        }
-    }
-
-    return students;
+function getPassingStudents(enrollments: Enrollment[]): string[] {
+    return enrollments
+        .filter(enrollment => enrollment.score >= 75)
+        .map(enrollment => enrollment.student);
 }
-
-// 9. Number of students in each course
-function getCourseEnrollmentCount(
-    data: typeof enrollments,
+function getStudentsByCourse(
+    enrollments: Enrollment[],
     course: string
 ): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].course === course) {
-            count++;
-        }
-    }
-
-    return count;
+    return enrollments.filter(
+        enrollment => enrollment.course === course
+    ).length;
 }
-
-// 10. Average score for each course
-function getCourseAverageScore(
-    data: typeof enrollments,
+function getAverageScoreByCourse(
+    enrollments: Enrollment[],
     course: string
 ): number {
-    let total = 0;
-    let count = 0;
 
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].course === course) {
-            total += data[i].score;
-            count++;
-        }
-    }
-
-    return total / count;
-}
-
-// 11. Total learning hours
-function getTotalLearningHours(data: typeof enrollments): number {
-    let total = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        total += data[i].duration;
-    }
-
-    return total;
-}
-
-// 12. Average learning duration
-function getAverageLearningDuration(data: typeof enrollments): number {
-    return getTotalLearningHours(data) / getTotalEnrollments(data);
-}
-
-// Void function 1: display completion statistics
-function printCompletionStatistics(data: typeof enrollments): void {
-    console.log("=== COMPLETION STATISTICS ===");
-    console.log("Total Enrollments:", getTotalEnrollments(data));
-    console.log("Completed Enrollments:", getCompletedEnrollments(data));
-    console.log("Incomplete Enrollments:", getIncompleteEnrollments(data));
-    console.log(
-        "Completion Percentage:",
-        getCompletionPercentage(data).toFixed(2) + "%"
-    );
-}
-
-// Void function 2: display academic statistics
-function printAcademicStatistics(data: typeof enrollments): void {
-    console.log("\n=== ACADEMIC STATISTICS ===");
-    console.log("Highest Score:", getHighestScore(data));
-    console.log("Lowest Score:", getLowestScore(data));
-    console.log("Average Score:", getAverageScore(data).toFixed(2));
-    console.log("Passing Students:", getPassingStudents(data));
-}
-
-// Void function 3: display course statistics
-function printCourseStatistics(data: typeof enrollments): void {
-    console.log("\n=== COURSE STATISTICS ===");
-
-    console.log(
-        "TypeScript Students:",
-        getCourseEnrollmentCount(data, "TypeScript")
-    );
-    console.log(
-        "TypeScript Average Score:",
-        getCourseAverageScore(data, "TypeScript").toFixed(2)
+    const courseEnrollments = enrollments.filter(
+        enrollment => enrollment.course === course
     );
 
-    console.log(
-        "Database Students:",
-        getCourseEnrollmentCount(data, "Database")
-    );
-    console.log(
-        "Database Average Score:",
-        getCourseAverageScore(data, "Database").toFixed(2)
+    const totalScore = courseEnrollments.reduce(
+        (total, enrollment) => total + enrollment.score,
+        0
     );
 
-    console.log(
-        "Backend Students:",
-        getCourseEnrollmentCount(data, "Backend")
-    );
-    console.log(
-        "Backend Average Score:",
-        getCourseAverageScore(data, "Backend").toFixed(2)
-    );
+    return totalScore / courseEnrollments.length;
 }
+function getTotalLearningHours(
+    enrollments: Enrollment[]
+): number {
 
-// Void function 4: display learning statistics
-function printLearningStatistics(data: typeof enrollments): void {
-    console.log("\n=== LEARNING STATISTICS ===");
-    console.log("Total Learning Hours:", getTotalLearningHours(data));
-    console.log(
-        "Average Learning Duration:",
-        getAverageLearningDuration(data).toFixed(2)
+    const totalMinutes = enrollments.reduce(
+        (total, enrollment) => total + enrollment.duration,
+        0
     );
-}
 
-// Main dashboard
-function printDashboard(data: typeof enrollments): void {
-    printCompletionStatistics(data);
-    printAcademicStatistics(data);
-    printCourseStatistics(data);
-    printLearningStatistics(data);
+    return totalMinutes / 60;
 }
+function getAverageLearningDuration(
+    enrollments: Enrollment[]
+): number {
 
-printDashboard(enrollments);
+    const totalDuration = enrollments.reduce(
+        (total, enrollment) => total + enrollment.duration,
+        0
+    );
+
+    return totalDuration / enrollments.length;
+}
+function printCompletionStatistics(enrollments: Enrollment[]): void {
+console.log("=== COMPLETION STATISTICS ===");
+console.log("Total Enrollments:", getTotalEnrollments(enrollments));
+console.log("Completed Enrollments:", getCompletedEnrollments(enrollments));
+console.log("Incomplete Enrollments:", getIncompleteEnrollments(enrollments));
+console.log("Completion Percentage:", getCompletionPercentage(enrollments).toFixed(2) + "%");
+}
+function printAcademicStatistics(enrollments: Enrollment[]): void {
+console.log("\n=== ACADEMIC STATISTICS ===");
+console.log("Highest Score:", getHighestScore(enrollments));
+console.log("Lowest Score:",getLowestScore(enrollments));
+console.log("Average Score:", getAverageScore(enrollments).toFixed(2));
+console.log("Passing Students:",getPassingStudents(enrollments).join(", "));
+}
+function printCourseStatistics(enrollments: Enrollment[]): void {
+console.log("\n=== COURSE STATISTICS ===");
+console.log("TypeScript Students:",getStudentsByCourse(enrollments, "TypeScript"));
+console.log("TypeScript Average Score:", getAverageScoreByCourse(enrollments, "TypeScript").toFixed(2));
+console.log("Database Students:", getStudentsByCourse(enrollments, "Database"));
+console.log("Database Average Score:", getAverageScoreByCourse(enrollments, "Database").toFixed(2));
+console.log("Backend Students:", getStudentsByCourse(enrollments, "Backend"));
+console.log("Backend Average Score:", getAverageScoreByCourse(enrollments, "Backend").toFixed(2));
+}
+function printLearningStatistics(enrollments: Enrollment[]): void {
+console.log("\n=== LEARNING STATISTICS ===");
+console.log("Total Learning Hours:", getTotalLearningHours(enrollments).toFixed(2));
+console.log("Average Learning Duration:", getAverageLearningDuration(enrollments).toFixed(2), "minutes");
+}
+printCompletionStatistics(enrollments);
+printAcademicStatistics(enrollments);
+printCourseStatistics(enrollments);
+printLearningStatistics(enrollments);

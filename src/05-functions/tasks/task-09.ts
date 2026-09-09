@@ -117,3 +117,4 @@ function printHospitalReport(patients: patient[]): void {
     console.log("Total Revenue:", getTotalRevenu(patients));
     console.log("Admitted Patients:", getAdmittedPatientNames(patients).join(", "));
 }
+printHospitalReport(patients);

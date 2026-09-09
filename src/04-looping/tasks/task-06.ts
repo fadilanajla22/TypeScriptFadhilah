@@ -24,22 +24,21 @@ let lowStock = 0;
 let safeStock = 0;
 let totalInventory = 0;
 
-for (let i = 0; i < stocks.length; i++) {
-  totalInventory += stocks[i];
+for (const stock of stocks) {
+    totalInventory += stock;
 
-  if (stocks[i] === 0) {
-    outOfStock++;
-  } else if (stocks[i] < 10) {
-    lowStock++;
-  } else {
-    safeStock++;
-  }
+    if (stock === 0) {
+        outOfStock++;
+    } else if (stock < 10) {
+        lowStock++;
+    } else {
+        safeStock++;
+    }
 }
-
 const averageStock = totalInventory / stocks.length;
 
-console.log("Out of Stock:", outOfStock);
-console.log("Low Stock:", lowStock);
-console.log("Safe Stock:", safeStock);
-console.log("Total Inventory:", totalInventory);
-console.log("Average Stock:", averageStock);
+console.log("Out of Stock Products :", outOfStock);
+console.log("Low Stock Products    :", lowStock);
+console.log("Safe Stock Products   :", safeStock);
+console.log("Total Inventory       :", totalInventory);
+console.log("Average Stock         :", averageStock.toFixed(2));

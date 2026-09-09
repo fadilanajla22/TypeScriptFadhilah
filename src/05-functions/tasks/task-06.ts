@@ -26,74 +26,34 @@ const sales = [
 ];
 
 function calculateTotalSales(sales: number[]): number {
-  let total = 0;
-
-  for (const sale of sales) {
-    total += sale;
-  }
-
-  return total;
+  return sales.reduce((total, sale) => total + sale, 0);
 }
 
 function findHighestTransaction(sales: number[]): number {
-  let highest = sales[0];
-
-  for (const sale of sales) {
-    if (sale > highest) {
-      highest = sale;
-    }
-  }
-
-  return highest;
+  return Math.max(...sales);
 }
 
 function findLowestTransaction(sales: number[]): number {
-  let lowest = sales[0];
-
-  for (const sale of sales) {
-    if (sale < lowest) {
-      lowest = sale;
-    }
-  }
-
-  return lowest;
+  return Math.min(...sales);
 }
 
 function calculateAverageSale(sales: number[]): number {
-  let total = 0;
-
-  for (const sale of sales) {
-    total += sale;
-  }
-
-  return total / sales.length;
+  return calculateTotalSales(sales) / sales.length;
 }
 
 function countLargeTransactions(
   sales: number[],
   minimumAmount: number
 ): number {
-  let count = 0;
-
-  for (const sale of sales) {
-    if (sale > minimumAmount) {
-      count++;
-    }
-  }
-
-  return count;
+  return sales.filter((sale) => sale > minimumAmount).length;
 }
 
 function displayDashboard(sales: number[]): void {
-  console.log("=== Daily Sales Dashboard ===");
+  console.log("=== DAILY SALES DASHBOARD ===");
   console.log("Total Sales:", calculateTotalSales(sales));
   console.log("Highest Transaction:", findHighestTransaction(sales));
   console.log("Lowest Transaction:", findLowestTransaction(sales));
   console.log("Average Transaction:", calculateAverageSale(sales));
-  console.log(
-    "Transactions Above Rp500,000:",
-    countLargeTransactions(sales, 500000)
-  );
+  console.log("Transactions Above Rp500,000:", countLargeTransactions(sales, 500000));
 }
-
 displayDashboard(sales);

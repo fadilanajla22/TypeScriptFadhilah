@@ -21,10 +21,11 @@ const mineralWaterPrice: number = 5000;
 const friedRiceQty: number = 3;
 const mineralWaterQty: number = 2;
 const discount: number = 10000;
-const totalFoodPrice: number = friedRicePrice * friedRiceQty;
-const totalDrinkPrice: number = mineralWaterPrice * mineralWaterQty;
-const grandTotal: number = totalFoodPrice + totalDrinkPrice;
-const finalPayment: number = grandTotal - discount;
+
+const totalFoodPrice = friedRicePrice * friedRiceQty;
+const totalDrinkPrice = mineralWaterPrice * mineralWaterQty;
+const grandTotal = totalFoodPrice + totalDrinkPrice;
+const finalPayment = grandTotal - discount;
 
 // Display results
 console.log("=== School Cafeteria Receipt ===");

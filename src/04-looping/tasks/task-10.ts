@@ -32,33 +32,35 @@ let passedCount = 0;
 let reviseCount = 0;
 let totalScore = 0;
 
-const notSubmittedNames: string[] = [];
-const reviseNames: string[] = [];
+console.log("Student Who Did Not Submit:");
 
 for (const submission of submissions) {
     totalScore += submission.score;
 
     if (submission.submitted) {
         submittedCount++;
-
-        if (submission.score >= 75) {
-            passedCount++;
-        } else {
-            reviseCount++;
-            reviseNames.push(submission.student);
-        }
     } else {
         notSubmittedCount++;
-        notSubmittedNames.push(submission.student);
+        console.log(submission.student);
+    }
+    if (submission.score >= 75) {
+        passedCount++;
+    }
+    if (submission.submitted && submission.score < 75) {
+        reviseCount++;
     }
 }
+console.log("Students Who Must Revise:");
 
+for (const submission of submissions) {
+    if (submission.submitted && submission.score < 75) {
+        console.log(submission.student);
+    }
+}
 const averageScore = totalScore / submissions.length;
 
-console.log("Submitted:", submittedCount);
-console.log("Not Submitted:", notSubmittedCount);
-console.log("Passed:", passedCount);
-console.log("Must Revise:", reviseCount);
-console.log("Students who did not submit:", notSubmittedNames);
-console.log("Students who must revise:", reviseNames);
-console.log("Class Average Score:", averageScore);
+console.log("Submitted Students      :", submittedCount);
+console.log("Did Not Submit          :", notSubmittedCount);
+console.log("Passed Students         :", passedCount);
+console.log("Students Must Revise    :", reviseCount);
+console.log("Class Average Score     :", averageScore.toFixed(2));
