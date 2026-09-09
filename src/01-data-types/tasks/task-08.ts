@@ -22,12 +22,12 @@
  * 3. Display the temperature data using console.log.
  */
 
-type Temperature = {
+type TemperatureReading = {
     time: string;
     temperature: number;
 }
 
-const temperatures: Temperature[] = [
+const temperatureData: TemperatureReading[] = [
     { time: "08:00", temperature: 24.5 },
     { time: "09:00", temperature: 25.1 },
     { time: "10:00", temperature: 26.8 },
@@ -38,6 +38,7 @@ const temperatures: Temperature[] = [
     { time: "15:00", temperature: 29.3 },
 ];
 
-console.log({
-    temperatures,
-})
+console.log("=== TEMPERATURE DATA ===");
+temperatureData.forEach((reading) => {
+    console.log(`Time: ${reading.time}, Temperature: ${reading.temperature}°C`);
+});

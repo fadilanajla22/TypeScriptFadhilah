@@ -22,12 +22,13 @@ type Student = {
     isPaid: boolean;
 }
 
-const student: Student[] = [
+const studentData: Student[] = [
     { StudentId: "ST001", name: "Ahmad Fauzi", age: 16, isPaid: true },
     { StudentId: "ST002", name: "Siti Nurhaliza", age: 16, isPaid: false },
     { StudentId: "ST003", name: "Budi Santoso", age: 16, isPaid: true },
 ]
 
-console.log({
-    student,
+console.log("=== STUDENT DATA ===");
+studentData.forEach((Student) => {
+    console.log(`Student ID: ${Student.StudentId}, Name: ${Student.name}, Age: ${Student.age}, Has Paid: ${Student.isPaid}`);
 });

@@ -64,142 +64,56 @@ const patients = [
     }
 ];
 
-// 1. Total patients
-function getTotalPatients(data: typeof patients): number {
-    return data.length;
+type patient = {
+    id: string;
+    name: string;
+    age: number;
+    department: string;
+    admitted: boolean;
+    bill: number;
+};
+function getTotalPatient(patients: patient[]): number{
+    return patients.length;
 }
-
-// 2. Total admitted patients
-function getAdmittedPatients(data: typeof patients): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].admitted === true) {
-            count++;
-        }
-    }
-
-    return count;
+function getTotalAdmittedPatients(patients: patient[]):number {
+    return patients.filter(patient => patient.admitted === true).length;
 }
-
-// 3. Total discharged patients
-function getDischargedPatients(data: typeof patients): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].admitted === false) {
-            count++;
-        }
-    }
-
-    return count;
+function getTotalDischargedPatients(patients: patient[]): number {
+    return patients.filter(patient => patient.admitted === false).length;
 }
-
-// 4. Count patients in a department
-function getDepartmentCount(
-    data: typeof patients,
-    department: string
-): number {
-    let count = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].department === department) {
-            count++;
-        }
-    }
-
-    return count;
+function getDepartmentCount(patients: patient[], department:string): number {
+    return patients.filter(patient => patient.department === department).length;
 }
-
-// 5. Highest hospital bill
-function getHighestBill(data: typeof patients): number {
-    let highest = data[0].bill;
-
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].bill > highest) {
-            highest = data[i].bill;
-        }
-    }
-
-    return highest;
+function getHighestBill(patients: patient[]): number {
+    return Math.max(...patients.map(patient => patient.bill));
 }
-
-// 6. Lowest hospital bill
-function getLowestBill(data: typeof patients): number {
-    let lowest = data[0].bill;
-
-    for (let i = 1; i < data.length; i++) {
-        if (data[i].bill < lowest) {
-            lowest = data[i].bill;
-        }
-    }
-
-    return lowest;
+function getLowestBill(patients: patient[]): number {
+    return Math.min(...patients.map(patient => patient.bill));
 }
-
-// 7. Average hospital bill
-function getAverageBill(data: typeof patients): number {
-    let total = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        total += data[i].bill;
-    }
-
-    return total / data.length;
+function getAverageBill(patients: patient[]): number {
+    const totalBill = patients.reduce((total, patient) => total + patient.bill, 0);
+    return totalBill / patients.length;
 }
-
-// 8. Total hospital revenue
-function getTotalRevenue(data: typeof patients): number {
-    let total = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        total += data[i].bill;
-    }
-
-    return total;
+function getTotalRevenu(patients: patient[]): number {
+    return patients.reduce(
+        (total, patient) => total + patient.bill, 0);
 }
-
-// 9. Names of admitted patients
-function getAdmittedPatientNames(data: typeof patients): string[] {
-    let names: string[] = [];
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].admitted === true) {
-            names.push(data[i].name);
-        }
-    }
-
-    return names;
+function getAdmittedPatientNames(patients: patient[]): string[] {
+    return patients
+        .filter(patient => patient.admitted === true)
+        .map(patient => patient.name);
 }
-
-// Void function: hanya menampilkan report
-function printHospitalReport(data: typeof patients): void {
-    console.log("=== HOSPITAL DAILY REPORT ===");
-
-    console.log("Total Patients:", getTotalPatients(data));
-    console.log("Total Admitted Patients:", getAdmittedPatients(data));
-    console.log("Total Discharged Patients:", getDischargedPatients(data));
-
-    console.log(
-        "Pediatrics:",
-        getDepartmentCount(data, "Pediatrics")
-    );
-
-    console.log(
-        "Cardiology:",
-        getDepartmentCount(data, "Cardiology")
-    );
-
-    console.log(
-        "Orthopedics:",
-        getDepartmentCount(data, "Orthopedics")
-    );
-
-    console.log("Highest Hospital Bill:", getHighestBill(data));
-    console.log("Lowest Hospital Bill:", getLowestBill(data));
-    console.log("Average Hospital Bill:", getAverageBill(data));
-    console.log("Total Hospital Revenue:", getTotalRevenue(data));
-    console.log("Admitted Patients:", getAdmittedPatientNames(data));
+function printHospitalReport(patients: patient[]): void {
+    console.log("===== HOSPITAL DAILY REPORT =====");
+    console.log("Total Patients:", getTotalPatient(patients));
+    console.log("Total Admitted Patients:", getTotalAdmittedPatients(patients));
+    console.log("Total Discharged Patients:", getTotalDischargedPatients(patients));
+    console.log("Pediatrics:", getDepartmentCount(patients, "Pediatrics"));
+    console.log("Cardiology:", getDepartmentCount(patients, "Cardiology"));
+    console.log("Orthopedics:", getDepartmentCount(patients, "Orthopedics"));
+    console.log("Highest Bill:", getHighestBill(patients));
+    console.log("Lowest Bill:", getLowestBill(patients));
+    console.log("Average Bill:", getAverageBill(patients));
+    console.log("Total Revenue:", getTotalRevenu(patients));
+    console.log("Admitted Patients:", getAdmittedPatientNames(patients).join(", "));
 }
-
-printHospitalReport(patients);

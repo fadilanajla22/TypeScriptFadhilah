@@ -17,13 +17,11 @@
 
 const productName: string = "Mechanical Keyboard RGB";
 const productCode: string = "KBR-001";
-
 const originalPrice: number = 850000;
 const discountPercent: number = 25;
-
 const quantity: number = 2;
 const isPremiumMember: boolean = true;
-
+const freeShipping: boolean = true;
 const stockAvailable: number = 18;
 
 console.log("=== FLASH SALE PRODUCT ===");
@@ -33,5 +31,5 @@ console.log("Original Price: Rp", originalPrice);
 console.log("Discount:", discountPercent + "%");
 console.log("Quantity:", quantity);
 console.log("Premium Member:", isPremiumMember);
-console.log("Free Shipping:", isPremiumMember);
+console.log("Free Shipping:", freeShipping);
 console.log("Stock Available:", stockAvailable);

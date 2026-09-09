@@ -18,15 +18,9 @@
 // Item prices
 const friedRicePrice: number = 18000;
 const mineralWaterPrice: number = 5000;
-
-// Quantity
 const friedRiceQty: number = 3;
 const mineralWaterQty: number = 2;
-
-// Discount
 const discount: number = 10000;
-
-// Calculations
 const totalFoodPrice: number = friedRicePrice * friedRiceQty;
 const totalDrinkPrice: number = mineralWaterPrice * mineralWaterQty;
 const grandTotal: number = totalFoodPrice + totalDrinkPrice;

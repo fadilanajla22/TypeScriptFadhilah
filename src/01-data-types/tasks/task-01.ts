@@ -18,12 +18,10 @@
 
 const studentName: string = "Nadia Putri";
 const studentId: string = "ST2026045";
-
 const assignmentScore: number = 88.5;
 const midtermExamScore: number = 84;
 const finalExamScore: number = 91.5;
 const attendanceScore: number = 100;
-
 const participatesInExtracurricular: boolean = true;
 
 console.log("Student Name:", studentName);

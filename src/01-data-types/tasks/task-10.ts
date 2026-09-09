@@ -33,6 +33,7 @@ const product: Product[] = [
     { productCode: "HP004", name: "Gaming Headset", price: 720000, quantity: 1, freeShipping: true },
 ]
 
-console.log({
-    product,
+console.log("=== product ===");
+product.forEach((product) => {
+    console.log(`Product Code: ${product.productCode}, Product Name: ${product.name}, Price: ${product.price}, Quantity: ${product.quantity}, Free Shipping: ${product.freeShipping}`);
 });

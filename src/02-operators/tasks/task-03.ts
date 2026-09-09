@@ -25,16 +25,12 @@ const overtimeRate: number = 50000;
 
 const overtimePay: number = overtimeHours * overtimeRate;
 
-let bonus: number = 0;
+const Bonus: number = overtimeHours > 10 ? 300000 : 0;
 
-if (overtimeHours > 10) {
-  bonus = 300000;
-}
-
-const finalSalary: number = basicSalary + overtimePay + bonus;
+const finalSalary: number = basicSalary + overtimePay + Bonus;
 
 console.log("Employee Name :", employeeName);
 console.log("Basic Salary  : Rp", basicSalary);
 console.log("Overtime Pay  : Rp", overtimePay);
-console.log("Bonus         : Rp", bonus);
+console.log("Bonus         : Rp", Bonus);
 console.log("Final Salary  : Rp", finalSalary);
