@@ -54,8 +54,6 @@ const passedDatabaseSystems: boolean = true;
 const gpa: number = 3.45;
 const seatsAvailable: boolean = false;
 
-let registrationResult: string;
-
 if (isActiveStudent && tuitionPaid) {
     if (
         passedProgrammingFundamentals &&
@@ -63,16 +61,13 @@ if (isActiveStudent && tuitionPaid) {
         gpa >= 3.20
     ) {
         if (seatsAvailable) {
-            registrationResult = "Registration Successful";
+            console.log("Registration Successful");
         } else {
-            registrationResult = "Added to Waiting List";
+            console.log("Added to Waiting List");
         }
     } else {
-        registrationResult = "Academic Requirements Not Met";
+        console.log("Academic Requirements Not Met");
     }
 } else {
-    registrationResult = "Registration Rejected";
+    console.log("Registration Rejected");
 }
-
-console.log(`Student: ${studentName}`);
-console.log(`Registration Result: ${registrationResult}`);

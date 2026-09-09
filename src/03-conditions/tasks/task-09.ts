@@ -42,24 +42,21 @@ const temperature: number = 95;
 const highVibration: boolean = false;
 const productionSpeed: number = 92;
 
-let machineStatus: string;
 
 if (!poweredOn) {
-    machineStatus = "Machine Offline";
+    console.log("check its operating condition.");
 } else {
     if (temperature > 90) {
         if (highVibration) {
-            machineStatus = "Emergency Shutdown";
+            console.log("Emergency Shutdown");
         } else {
-            machineStatus = "Cooling Required";
+            console.log("Cooling Required");
         }
     } else {
         if (productionSpeed < 80) {
-            machineStatus = "Performance Warning";
+            console.log("Performance Warning");
         } else {
-            machineStatus = "Machine Operating Normally";
+            console.log("Machine Operating Normally");
         }
     }
 }
-
-console.log(`Machine Status: ${machineStatus}`);

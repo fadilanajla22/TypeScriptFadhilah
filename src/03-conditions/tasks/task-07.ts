@@ -37,25 +37,16 @@ const creditScore: number = 725;
 const existingDebt: number = 2500000;
 const isPermanentEmployee: boolean = true;
 
-let decision: string;
-
-const firstScreening: boolean =
-    monthlyIncome >= 8000000 && creditScore >= 700;
-
-if (firstScreening) {
-    const debtRatio: number = existingDebt / monthlyIncome;
-
-    const secondScreening: boolean =
-        debtRatio <= 0.30 && isPermanentEmployee;
-
-    if (secondScreening) {
-        decision = "Loan Approved";
+if (monthlyIncome >= 8000000 && creditScore >= 700) {
+    if (
+        existingDebt <= monthlyIncome * 0.3 &&
+        isPermanentEmployee
+    ) {
+        console.log("Loan Approved")
     } else {
-        decision = "Manual Review";
+        console.log("Manual Review")
     }
-} else {
-    decision = "Loan Rejected";
+}   else {
+        console.log("Loan Rejectd")
+    
 }
-
-console.log(`Applicant: ${applicant}`);
-console.log(`Loan Decision: ${decision}`);
