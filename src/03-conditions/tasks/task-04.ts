@@ -23,28 +23,20 @@
  * 3. Display the reservation result.
  */
 
-const customerName: string = "Nadia Putri"
-const PremiumMember: boolean = true;
-const RoomAvailable: boolean = false;
+const customerName = "Nadia Putri";
+const premiumMember = true;
+const roomAvailable = false;
 
-let reservationResult: string;
-if (RoomAvailable) {
-    if (PremiumMember) {
-        reservationResult = '${CustomerName}: Room available. You receive a FREE room upgrade.';
+if (roomAvailable) {
+    if (premiumMember) {
+        console.log(`${customerName}: Free room upgrade.`);
     } else {
-        reservationResult = '${CustomerName}: Room available. You will receive your reserved room.'
+        console.log(`${customerName}: Reserved room only.`);
     }
 } else {
-    if (PremiumMember) {
-        reservationResult = `${customerName}: No rooms available. You have been placed on the priority waiting list.`;
+    if (premiumMember) {
+        console.log(`${customerName}: Placed on the priority waiting list.`);
     } else {
-        reservationResult = `${customerName}: Sorry, no rooms are available.`;
+        console.log(`${customerName}: No rooms are available.`);
     }
 }
-
-// 3. Display the reservation result
-console.log("=== Hotel Reservation Result ===");
-console.log(`Customer Name   : ${customerName}`);
-console.log(`Premium Member  : ${PremiumMember ? "Yes" : "No"}`);
-console.log(`Room Available  : ${RoomAvailable ? "Yes" : "No"}`);
-console.log(reservationResult);

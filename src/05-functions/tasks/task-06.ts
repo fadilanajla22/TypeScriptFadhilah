@@ -25,35 +25,37 @@ const sales = [
   820000
 ];
 
-function calculateTotalSales(sales: number[]): number {
-  return sales.reduce((total, sale) => total + sale, 0);
+// 1. Total sales
+function getTotalSales(sales: number[]): number {
+  return sales.reduce((total, amount) => total + amount, 0);
 }
 
-function findHighestTransaction(sales: number[]): number {
+// 2. Highest transaction
+function getHighestTransaction(sales: number[]): number {
   return Math.max(...sales);
 }
 
-function findLowestTransaction(sales: number[]): number {
+// 3. Lowest transaction
+function getLowestTransaction(sales: number[]): number {
   return Math.min(...sales);
 }
 
-function calculateAverageSale(sales: number[]): number {
-  return calculateTotalSales(sales) / sales.length;
+// 4. Average transaction
+function getAverageTransaction(sales: number[]): number {
+  return getTotalSales(sales) / sales.length;
 }
 
-function countLargeTransactions(
-  sales: number[],
-  minimumAmount: number
-): number {
-  return sales.filter((sale) => sale > minimumAmount).length;
+// 5. Number of transactions above Rp500,000
+function countTransactionsAbove500K(sales: number[]): number {
+  return sales.filter(amount => amount > 500000).length;
 }
 
-function displayDashboard(sales: number[]): void {
-  console.log("=== DAILY SALES DASHBOARD ===");
-  console.log("Total Sales:", calculateTotalSales(sales));
-  console.log("Highest Transaction:", findHighestTransaction(sales));
-  console.log("Lowest Transaction:", findLowestTransaction(sales));
-  console.log("Average Transaction:", calculateAverageSale(sales));
-  console.log("Transactions Above Rp500,000:", countLargeTransactions(sales, 500000));
-}
-displayDashboard(sales);
+// Display dashboard
+console.log("Total Sales:", getTotalSales(sales));
+console.log("Highest Transaction:", getHighestTransaction(sales));
+console.log("Lowest Transaction:", getLowestTransaction(sales));
+console.log("Average Transaction:", getAverageTransaction(sales));
+console.log(
+  "Transactions Above Rp500,000:",
+  countTransactionsAbove500K(sales)
+);

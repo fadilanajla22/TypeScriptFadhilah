@@ -46,20 +46,23 @@ Student Tasks
 - Display the final registration result.
  */
 
-const studentName: string = "Nadia Putri";
-const isActiveStudent: boolean = true;
-const tuitionPaid: boolean = true;
-const passedProgrammingFundamentals: boolean = true;
-const passedDatabaseSystems: boolean = true;
-const gpa: number = 3.45;
-const seatsAvailable: boolean = false;
+const studentName = "Nadia Putri";
+const activeStudent = true;
+const tuitionPaid = true;
+const passedProgrammingFundamentals = true;
+const passedDatabaseSystems = true;
+const gpa = 3.45;
+const seatsAvailable = false;
 
-if (isActiveStudent && tuitionPaid) {
-    if (
+const academicStatus = activeStudent && tuitionPaid;
+
+if (academicStatus) {
+    const academicRequirements =
         passedProgrammingFundamentals &&
         passedDatabaseSystems &&
-        gpa >= 3.20
-    ) {
+        gpa >= 3.20;
+
+    if (academicRequirements) {
         if (seatsAvailable) {
             console.log("Registration Successful");
         } else {

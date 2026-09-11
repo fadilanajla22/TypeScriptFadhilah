@@ -31,7 +31,9 @@ let bronze = 0;
 let noMedal = 0;
 let totalScore = 0;
 
-for (const score of scores) {
+for (let i = 0; i < scores.length; i++) {
+    const score = scores[i];
+
     totalScore += score;
 
     if (score >= 95) {
@@ -44,10 +46,11 @@ for (const score of scores) {
         noMedal++;
     }
 }
-const average = totalScore / scores.length;
 
-console.log("Gold Medal Winners   :", gold);
-console.log("Silver Medal Winners :", silver);
-console.log("Bronze Medal Winners :", gold);
-console.log("No Medal             :", noMedal);
-console.log("Average Score        :", average.toFixed(2));
+const averageScore = totalScore / scores.length;
+
+console.log("Gold Medal Winners:", gold);
+console.log("Silver Medal Winners:", silver);
+console.log("Bronze Medal Winners:", bronze);
+console.log("Students Without Medals:", noMedal);
+console.log("Average Competition Score:", averageScore);

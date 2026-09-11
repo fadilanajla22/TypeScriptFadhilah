@@ -22,15 +22,15 @@
  * 4. Call the function for every employee.
  */
 
-function showBonusStatus(employeeName: string, performanceScore: number): void {
-    if (performanceScore >= 85) {
-        console.log(employeeName + ": Bonus Approved");
+function showBonusStatus(name: string, score: number): void {
+    if (score >= 85) {
+        console.log(`${name}: Bonus Approved`);
     } else {
-        console.log(employeeName + ": Bonus Not Approved");
+        console.log(`${name}: Bonus Not Approved`);
     }
 }
 
-// Memanggil function untuk setiap employee
+// Call the function for every employee
 showBonusStatus("John Cena", 92);
 showBonusStatus("Undertaker", 76);
 showBonusStatus("Rey Mysterio", 88);

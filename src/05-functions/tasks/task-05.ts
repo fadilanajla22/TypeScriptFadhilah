@@ -29,42 +29,34 @@ const scores = [
   97
 ];
 
-function findHighestScore(scores: number[]): number {
-  return Math.max(...scores);
+// 1. Find highest score
+function findHighest(scores: number[]): number {
+    return Math.max(...scores);
 }
 
-function findLowestScore(scores: number[]): number {
-  return Math.min(...scores);
+// 2. Find lowest score
+function findLowest(scores: number[]): number {
+    return Math.min(...scores);
 }
 
-function calculateAverage(scores: number[]): number {
-  let total = 0;
-
-  for (const score of scores) {
-    total += score;
-  }
-
-  return total / scores.length;
+// 3. Find average score
+function findAverage(scores: number[]): number {
+    const total = scores.reduce((sum, score) => sum + score, 0);
+    return total / scores.length;
 }
 
-function countPassingStudents(scores: number[]): number {
-  let count = 0;
-
-  for (const score of scores) {
-    if (score >= 75) {
-      count++;
-    }
-  }
-
-  return count;
+// 4. Count passing students
+function countPassing(scores: number[]): number {
+    return scores.filter(score => score >= 75).length;
 }
 
-function printScoreReport(scores: number[]): void {
-  console.log("=== Backend Development Score Report ===");
-  console.log("Highest Score:", findHighestScore(scores));
-  console.log("Lowest Score:", findLowestScore(scores));
-  console.log("Average Score:", calculateAverage(scores));
-  console.log("Passing Students:", countPassingStudents(scores));
+// Display complete report
+function displayReport(scores: number[]): void {
+    console.log("Highest Score:", findHighest(scores));
+    console.log("Lowest Score:", findLowest(scores));
+    console.log("Average Score:", findAverage(scores));
+    console.log("Passing Students:", countPassing(scores));
 }
 
-printScoreReport(scores);
+// Call the function
+displayReport(scores);

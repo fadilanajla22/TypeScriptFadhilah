@@ -21,57 +21,49 @@ const scores = [92, 68, 84, 73, 95, 61, 88];
  * Instead of creating four separate loops, create a reusable function that receives a callback responsible for transforming a score.
  */
 
-function processScores(
+function analyzeScores(
     scores: number[],
-    callback: (score: number) => string): string[] {
+    callback: (score: number) => string
+): string[] {
     const results: string[] = [];
 
     for (const score of scores) {
         results.push(callback(score));
     }
+
     return results;
 }
-// 1.  Determine whether each student passed. Passing grade is 70.
+
+// 1. Determine Pass/Fail
 function checkPassed(score: number): string {
-    if (score >= 70) {
-        return `${score} - Passed`;
-    } else {
-        return `${score} - Failed`;
-    }
+    return score >= 70 ? "Passed" : "Failed";
 }
-// 2. Convert each score into a grade.
-function convertGrade(score: number): string {
+
+// 2. Convert score into grade
+function getGrade(score: number): string {
     if (score >= 90) {
-        return `${score} - Grade A`;
+        return "A";
     } else if (score >= 80) {
-        return`${score} - Grade B`;
+        return "B";
     } else if (score >= 70) {
-        return `${score} - Grade C`;
+        return "C";
     } else {
-        return `${score} - Grade D`;
+        return "D";
     }
 }
-// 3. Calculate a score after adding 5 bonus points.
+
+// 3. Add 5 bonus points
 function addBonus(score: number): string {
-    const bonusScore = score + 5;
-    return `${score} + 5 = ${bonusScore}`;
+    return String(score + 5);
 }
-// 4. Determine whether the score is considered excellent.
+
+// 4. Determine Excellent/Regular
 function checkExcellent(score: number): string {
-    if (score > 90) {
-        return `${score} - Excellent`;
-    } else {
-        return `${score} - Reguler`;
-    }
+    return score > 90 ? "Excellent" : "Reguler";
 }
-console.log("=== PASS / FAILED ===");
-console.log(processScores(scores, checkPassed));
 
-console.log("=== GRADE ===");
-console.log(processScores(scores, convertGrade));
-
-console.log("=== Bonus Score ===");
-console.log(processScores(scores, addBonus));
-
-console.log("=== EXCELLENT / REGULER ===");
-console.log(processScores(scores, checkExcellent));
+// Menjalankan callback
+console.log("Pass/Fail:", analyzeScores(scores, checkPassed));
+console.log("Grades:", analyzeScores(scores, getGrade));
+console.log("Bonus Scores:", analyzeScores(scores, addBonus));
+console.log("Status:", analyzeScores(scores, checkExcellent));

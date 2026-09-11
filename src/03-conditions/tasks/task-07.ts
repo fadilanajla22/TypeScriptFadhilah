@@ -31,22 +31,25 @@
  * 3. Display the loan decision.
  */
 
-const applicant: string = "Andi Wijaya";
-const monthlyIncome: number = 10000000;
-const creditScore: number = 725;
-const existingDebt: number = 2500000;
-const isPermanentEmployee: boolean = true;
+const applicant = "Andi Wijaya";
+const monthlyIncome = 10000000;
+const creditScore = 725;
+const existingDebt = 2500000;
+const permanentEmployee = true;
 
+// First Screening
 if (monthlyIncome >= 8000000 && creditScore >= 700) {
-    if (
-        existingDebt <= monthlyIncome * 0.3 &&
-        isPermanentEmployee
-    ) {
-        console.log("Loan Approved")
+
+    // Second Screening
+    const debtRequirement = existingDebt <= monthlyIncome * 0.3;
+    const employmentRequirement = permanentEmployee;
+
+    if (debtRequirement && employmentRequirement) {
+        console.log("Loan Approved");
     } else {
-        console.log("Manual Review")
+        console.log("Manual Review");
     }
-}   else {
-        console.log("Loan Rejectd")
-    
+
+} else {
+    console.log("Loan Rejected");
 }

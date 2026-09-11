@@ -21,20 +21,21 @@ const attendances = [
 
 let presentCount = 0;
 let absentCount = 0;
+let absentNames: string[] = [];
 
-console.log("Absent Students:");
-
-for (const attendance of attendances) {
-  if (attendance.present) {
-    presentCount++;
-  } else {
-    absentCount++;
-    console.log(attendance.name);
-  }
+for (const student of attendances) {
+    if (student.present) {
+        presentCount++;
+    } else {
+        absentCount++;
+        absentNames.push(student.name);
+    }
 }
 
-const attendancePercentage = (presentCount / attendances.length) * 100;
+const attendancePercentage =
+    (presentCount / attendances.length) * 100;
 
-console.log("Present Students      :", presentCount);
-console.log("Absent Students       :", absentCount);
-console.log("Attendance Percentage :", attendancePercentage.toFixed(2) + "%");
+console.log("Present Students:", presentCount);
+console.log("Absent Students:", absentCount);
+console.log("Absent Names:", absentNames);
+console.log("Attendance Percentage:", attendancePercentage.toFixed(2) + "%");

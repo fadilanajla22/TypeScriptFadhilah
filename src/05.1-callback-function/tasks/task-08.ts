@@ -47,35 +47,37 @@ const transactions = [
  *   - Cancelled transactions → 0%
  */
 
-// 1. Extract customer's name only in array
-const customerName = transactions.map(transaction => transaction.customer);
-console.log("Customer Name:");
-console.log(customerName);
+// 1. Extract customer's name
+function getCustomerNames(): string[] {
+    return transactions.map(transaction => transaction.customer);
+}
 
-// 2.  Determine Transaction Category with rules below: ≥ Rp2,000,000 → HIGH VALUE ≥ Rp1,000,000 → MEDIUM VALUe- < Rp1,000,000 → LOW VALUE
-const transactionCategories = transactions.map(transaction => {let category;
-    if (transaction.amount >= 2000000) {
-        category = "High Value";
-    } else if (transaction.amount >= 1000000) {
-        category = "Medium Value"
-    } else {
-        category = "Low Value"
-    }
-    return category;
-});
-console.log("Transaction Categories:");
-console.log(transactionCategories);
+// 2. Determine transaction category
+function getTransactionCategories(): string[] {
+    return transactions.map(transaction => {
+        if (transaction.amount >= 2000000) {
+            return "HIGH VALUE";
+        } else if (transaction.amount >= 1000000) {
+            return "MEDIUM VALUE";
+        } else {
+            return "LOW VALUE";
+        }
+    });
+}
 
-// 3. Calculate platform fee: Paid transactions → 2% Pending transactions → 1% Cancelled transactions → 0%
-const platformFees = transactions.map(transaction => {let fee;
-    if (transaction.status === "Paid"){
-        fee = transaction.amount * 0.02;
-    } else if (transaction.status === "Pending"){
-        fee = transaction.amount * 0.01;
-    } else if (transaction.status === "Cancelled"){
-        fee = 0;
-    }
-    return fee;
-});
-console.log("Platform Fees:");
-console.log(platformFees)
+// 3. Calculate platform fee
+function getPlatformFees(): number[] {
+    return transactions.map(transaction => {
+        if (transaction.status === "paid") {
+            return transaction.amount * 0.02;
+        } else if (transaction.status === "pending") {
+            return transaction.amount * 0.01;
+        } else {
+            return 0;
+        }
+    });
+}
+
+console.log("Customer Names:", getCustomerNames());
+console.log("Transaction Categories:", getTransactionCategories());
+console.log("Platform Fees:", getPlatformFees());

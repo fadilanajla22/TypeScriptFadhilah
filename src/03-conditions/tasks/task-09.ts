@@ -37,14 +37,13 @@ Student Tasks
 - Display the final machine status.
  */
 
-const poweredOn: boolean = true;
-const temperature: number = 95;
-const highVibration: boolean = false;
-const productionSpeed: number = 92;
-
+const poweredOn = true;
+const temperature = 95;
+const highVibration = false;
+const productionSpeed = 92;
 
 if (!poweredOn) {
-    console.log("check its operating condition.");
+    console.log("Machine Offline");
 } else {
     if (temperature > 90) {
         if (highVibration) {

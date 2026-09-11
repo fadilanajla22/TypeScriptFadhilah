@@ -22,23 +22,28 @@ const orders = [
   { id: "ORD006", paid: true, stockAvailable: true }
 ];
 
+
 let ready = 0;
 let unpaid = 0;
 let waiting = 0;
-console.log("Orders Ready to Ship");
+let readyOrderIds: string[] = [];
 
 for (const order of orders) {
-  if (order.paid && order.stockAvailable) {
-    ready++;
-    console.log(order.id);
-  }
-  if (!order.paid) {
-    unpaid++;
-  }
-  if (!order.stockAvailable) {
-    waiting++;
-  }
+    if (order.paid && order.stockAvailable) {
+        ready++;
+        readyOrderIds.push(order.id);
+    }
+
+    if (!order.paid) {
+        unpaid++;
+    }
+
+    if (!order.stockAvailable) {
+        waiting++;
+    }
 }
-console.log("Ready to Orders       :", ready);
-console.log("Unpaid Orders         :", unpaid);
-console.log("Waiting for Stock     :", waiting);
+
+console.log("Ready to Ship:", ready);
+console.log("Unpaid Orders:", unpaid);
+console.log("Waiting for Stock:", waiting);
+console.log("Ready Order IDs:", readyOrderIds);

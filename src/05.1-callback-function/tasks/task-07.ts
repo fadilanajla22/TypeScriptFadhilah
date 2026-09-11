@@ -27,163 +27,83 @@
  * - It should only process the students and execute the callback.
  */
 
-type Student = {
-    name: string
-    score: number
-    attendance: number
-}
-type PassFailResult = Student & {
-    status: "Pass" | "Fail"
-}
-type AcademicCategory =
-    | "Excellent"
-    | "Good"
-    | "Needs Improvement"
-type AcademicResult = Student & {
-    category: AcademicCategory
-}
-type AttendanceResult = Student & {
-    attendanceStatus: "Good Attendance" | "Poor Attendance"
-}
-type Recommendation =
-    | "Excellent"
-    | "Good"
-    | "Improve Attendance"
-    | "Improve Academic Performance"
-type RecommendationResult = Student & {
-    recommendation: Recommendation
-}
-// Student data
-const students: Student[] = [
+const students = [
     { name: "Alya", score: 92, attendance: 96 },
     { name: "Budi", score: 68, attendance: 88 },
     { name: "Citra", score: 84, attendance: 91 },
     { name: "Dimas", score: 73, attendance: 95 },
     { name: "Eka", score: 95, attendance: 82 },
     { name: "Fajar", score: 79, attendance: 97 }
-]
-// 1. Pass / Fail Status
-function getPassFailStatus(
-    student: Student
-): PassFailResult {
+];
 
-    const status =
-        student.score >= 75 &&
-        student.attendance >= 90
-            ? "Pass"
-            : "Fail"
+type Student = {
+    name: string;
+    score: number;
+    attendance: number;
+};
 
-    return {
-        ...student,
-        status
+function processStudents<T>(
+    data: Student[],
+    action: (student: Student) => T
+): T[] {
+    const result: T[] = [];
+
+    for (let i = 0; i < data.length; i++) {
+        result.push(action(data[i]));
     }
+
+    return result;
 }
 
+// Pass / Fail
+function checkAcademicSuccess(student: Student): string {
+    if (student.score >= 75 && student.attendance >= 90) {
+        return "Pass";
+    }
 
-// 2. Academic Performance Category
-function getAcademicCategory(
-    student: Student
-): AcademicResult {
+    return "Fail";
+}
 
-    let category: AcademicCategory
+// Academic Performance
+function checkPerformance(student: Student): string {
+    if (student.score >= 90) {
+        return "Excellent";
+    }
+
+    if (student.score >= 75) {
+        return "Good";
+    }
+
+    return "Needs Improvement";
+}
+
+// Attendance
+function checkAttendance(student: Student): string {
+    if (student.attendance >= 90) {
+        return "Good Attendance";
+    }
+
+    return "Poor Attendance";
+}
+
+// Recommendation
+function giveRecommendation(student: Student): string {
+    if (student.score < 75) {
+        return "Improve Academic Performance";
+    }
+
+    if (student.attendance < 90) {
+        return "Improve Attendance";
+    }
 
     if (student.score >= 90) {
-        category = "Excellent"
-    } else if (student.score >= 75) {
-        category = "Good"
-    } else {
-        category = "Needs Improvement"
+        return "Excellent";
     }
 
-    return {
-        ...student,
-        category
-    }
+    return "Good";
 }
 
-// 3. Attendance Status
-function getAttendanceStatus(
-    student: Student
-): AttendanceResult {
-
-    const attendanceStatus =
-        student.attendance >= 90
-            ? "Good Attendance"
-            : "Poor Attendance"
-
-    return {
-        ...student,
-        attendanceStatus
-    }
-}
-
-// 4. Final Recommendation
-function getRecommendation(
-    student: Student
-): RecommendationResult {
-
-    let recommendation: Recommendation
-
-    if (
-        student.score >= 90 &&
-        student.attendance >= 90
-    ) {
-        recommendation = "Excellent"
-
-    } else if (
-        student.score >= 75 &&
-        student.attendance >= 90
-    ) {
-        recommendation = "Good"
-
-    } else if (
-        student.score >= 75 &&
-        student.attendance < 90
-    ) {
-        recommendation = "Improve Attendance"
-
-    } else {
-        recommendation = "Improve Academic Performance"
-    }
-
-    return {
-        ...student,
-        recommendation
-    }
-}
-
-// Reusable processing function
-function processStudents<T>(
-    students: Student[],
-    callback: (student: Student) => T
-): T[] {
-
-    return students.map(callback)
-}
-
-// Process students using different callbacks
-const passFailResults = processStudents(
-    students,
-    getPassFailStatus
-)
-const academicResults = processStudents(
-    students,
-    getAcademicCategory
-)
-const attendanceResults = processStudents(
-    students,
-    getAttendanceStatus
-)
-const recommendationResults = processStudents(
-    students,
-    getRecommendation
-)
-// Output
-console.log("====== PASS / FAIL STATUS ======")
-console.log(passFailResults)
-console.log("====== ACADEMIC PERFORMANCE ======")
-console.log(academicResults)
-console.log("====== ATTENDANCE STATUS ======")
-console.log(attendanceResults)
-console.log("====== FINAL RECOMMENDATION ======")
-console.log(recommendationResults)
+console.log("Pass/Fail:", processStudents(students, checkAcademicSuccess));
+console.log("Performance:", processStudents(students, checkPerformance));
+console.log("Attendance:", processStudents(students, checkAttendance));
+console.log("Recommendation:", processStudents(students, giveRecommendation));

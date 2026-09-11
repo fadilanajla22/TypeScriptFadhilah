@@ -33,23 +33,27 @@
  *  - Display the correct result.
  */
 
-const StudentName: string = "Fajar Hidayat";
-const GPA: number = 3.86;
-const FamilyIncome: number = 4200000;
-const CompetitionCount: number = 4;
-const DisciplinaryRecord: boolean = false;
-const DoucumentComplete: boolean = true;
+const studentName = "Fajar Hidayat";
+const gpa = 3.86;
+const familyIncome = 4200000;
+const competitionCount = 4;
+const hasDisciplinaryRecord = false;
+const documentsComplete = true;
 
-if (GPA >= 3.75 && FamilyIncome < 5000000) {
-  if (
-    CompetitionCount >= 3 &&
-    DisciplinaryRecord === false &&
-    DoucumentComplete === true
-  ) {
-    console.log("Scholarship Approved");
-  } else {
-    console.log("Passed First Screening, but Failed Second Screening");
-  }
-}  else {
-  console.log("Failed First Screening")
+// First Screening
+if (gpa >= 3.75 && familyIncome < 5000000) {
+
+    // Second Screening
+    if (
+        competitionCount >= 3 &&
+        !hasDisciplinaryRecord &&
+        documentsComplete
+    ) {
+        console.log("Scholarship Approved");
+    } else {
+        console.log("Passed First Screening, but Failed Second Screening");
+    }
+
+} else {
+    console.log("Failed First Screening");
 }

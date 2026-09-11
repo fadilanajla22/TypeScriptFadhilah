@@ -56,46 +56,32 @@ type ORDER_STATUS = "PAID" | "UNPAID"
 type PaymentStatusOrder = Order & { status: ORDER_STATUS }
 type ShippingCategoryOrder = Order & { shippingStatus: SHIPPING_CATEGORY }
 
-function getPaymentStatus(selectedOrder: Order): PaymentStatusOrder {
-    const status: ORDER_STATUS = selectedOrder.paid ? "PAID" : "UNPAID"
+function getPaymentStatus(order: Order): PaymentStatusOrder {
     return {
-        ...selectedOrder,
-        status: selectedOrder.paid ? "PAID" : "UNPAID"
-    };
+        ...order,
+        status: order.paid ? "PAID" : "UNPAID"
+    }
 }
 
-function getShippingCategory(selectedOrder: Order): ShippingCategoryOrder {
-    // implement to determine shipping category of order
+function getShippingCategory(order: Order): ShippingCategoryOrder {
     let shippingStatus: SHIPPING_CATEGORY
-    if (selectedOrder.total >= 1500000) {
+
+    if (order.total >= 1500000) {
         shippingStatus = "FREE SHIPPING"
-    } else if (selectedOrder.total >= 500000) {
+    } else if (order.total >= 500000) {
         shippingStatus = "STANDARD SHIPPING"
     } else {
         shippingStatus = "ECONOMY SHIPPING"
     }
-    // this function return order data within shipping cateogory
+
     return {
-        ...selectedOrder, 
-        shippingStatus: shippingStatus
+        ...order,
+        shippingStatus
     }
 }
 
-function processOrder<T>(
-    arr: Order[],
-    callback: (order: Order) => T): T[] {
-    // implement for callback
-    const results: T[] = []
-    for (const order of arr) {
-        results.push(callback(order))
-    }
-    return results
-}
+console.log("Payment Status:")
+console.log(orders.map(getPaymentStatus))
 
-const orderWithPaymentStatus = processOrder(orders, getPaymentStatus)
-const orderWithShippingCategory = processOrder(orders, getShippingCategory)
-
-console.log(`====== ORDER WITH PAYMENT STATUS ======`);
-console.log({ orders: orderWithPaymentStatus })
-console.log(`====== ORDER WITH SHIPPING CATEGORY ======`);
-console.log({ orders: orderWithShippingCategory })
+console.log("Shipping Category:")
+console.log(orders.map(getShippingCategory))

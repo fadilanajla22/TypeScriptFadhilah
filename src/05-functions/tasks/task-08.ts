@@ -56,50 +56,75 @@ const submissions = [
 ];
 const PassingScore = 75;
 
-type submit = {
+type Submit = {
   student: string;
   submitted: boolean;
   score: number;
 };
-function getTotalStudents(submission: submit[]){
-    return submission.length;
-}
-function getSubmitedCount(submission: submit[]) {
-  return submission.filter(item => item.submitted === true).length;
-}
-function getMissingCount(submission: submit[]){
-    return submission.filter(item => item.submitted === false).length;
-}
-function getPassedCount(submission: submit[]){
-    return submission.filter(
-        item => item.submitted === true && item.score >= PassingScore).length;
-    
-}
-function getRevisionCount(submission: submit[]) {
-    return submission.filter(item => item.submitted === true && item.score < PassingScore).length;
-}
-function getAverageScore(submission: submit[]) {
-    const totalScore = submission.reduce((total, item) => total + item.score, 0);
-    return totalScore / submission.length;
+
+// 1. Total students
+function getTotalStudents(submissions: Submit[]): number {
+    return submissions.length;
 }
 
-function getHighestScore(submission: submit[]) {
-    return Math.max(...submission.map(item => item.score));
+// 2. Submitted assignments
+function getSubmittedAssignments(submissions: Submit[]): number {
+    return submissions.filter(submission => submission.submitted).length;
 }
 
-function getLowestScore(submission: submit[]) {
-    return Math.min(...submission.map(item => item.score));
-}
-function displayReport(submission: submit[]) {
-    console.log("===== ASSIGNMENT REPORT =====");
-    console.log("Total students:", getTotalStudents(submission));
-    console.log("Submitted assignments:", getSubmitedCount(submission));
-    console.log("Missing assignments:", getMissingCount(submission));
-    console.log("Passed students:", getPassedCount(submission));
-    console.log("Students requiring revision:", getRevisionCount(submission));
-    console.log("Average score:", getAverageScore(submission));
-    console.log("Highest score:", getHighestScore(submission));
-    console.log("Lowest score:", getLowestScore(submission));
+// 3. Missing assignments
+function getMissingAssignments(submissions: Submit[]): number {
+    return submissions.filter(submission => !submission.submitted).length;
 }
 
+// 4. Passed students
+function getPassedStudents(submissions: Submit[]): number {
+    return submissions.filter(
+        submission => submission.submitted && submission.score >= PassingScore
+    ).length;
+}
+
+// 5. Students requiring revision
+function getStudentsRequiringRevision(submissions: Submit[]): number {
+    return submissions.filter(
+        submission => submission.submitted && submission.score < PassingScore
+    ).length;
+}
+
+// 6. Average score
+function getAverageScore(submissions: Submit[]): number {
+    const totalScore = submissions.reduce(
+        (total, submission) => total + submission.score,
+        0
+    );
+
+    return totalScore / submissions.length;
+}
+
+// 7. Highest score
+function getHighestScore(submissions: Submit[]): number {
+    return Math.max(...submissions.map(submission => submission.score));
+}
+
+// 8. Lowest score
+function getLowestScore(submissions: Submit[]): number {
+    return Math.min(...submissions.map(submission => submission.score));
+}
+
+// Void function: display report
+function displayReport(submissions: Submit[]): void {
+    console.log("Total Students:", getTotalStudents(submissions));
+    console.log("Submitted Assignments:", getSubmittedAssignments(submissions));
+    console.log("Missing Assignments:", getMissingAssignments(submissions));
+    console.log("Passed Students:", getPassedStudents(submissions));
+    console.log(
+        "Students Requiring Revision:",
+        getStudentsRequiringRevision(submissions)
+    );
+    console.log("Average Score:", getAverageScore(submissions));
+    console.log("Highest Score:", getHighestScore(submissions));
+    console.log("Lowest Score:", getLowestScore(submissions));
+}
+
+// Display report
 displayReport(submissions);

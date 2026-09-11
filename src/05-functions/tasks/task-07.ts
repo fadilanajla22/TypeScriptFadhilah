@@ -45,27 +45,49 @@ type Student = {
   active: boolean;
 };
 
-function countActiveStudents(students: Student[]) {
-  return students.filter(student => student.active === true).length;
+// Total students
+function getTotalStudents(students: Student[]): number {
+  return students.length;
 }
 
-function countInactiveStudents(students: Student[]){
-  return students.filter(student => student.active === false).length;
-
+// Active students
+function getActiveStudents(students: Student[]): number {
+  return students.filter(student => student.active).length;
 }
 
-function countStudentsByMajor(students: Student[], major: string){
-  return students.filter(student => student.major === major).length;
-
+// Inactive students
+function getInactiveStudents(students: Student[]): number {
+  return students.filter(student => !student.active).length;
 }
 
-function printEnrollmentReport(students: Student[]){
-   console.log("=== Enrollment Report ===");
-  console.log("Total Students:", students.length);
-  console.log("Active Students:", countActiveStudents(students));
-  console.log("Inactive Students:", countInactiveStudents(students));
-  console.log("Software Engineering Students:", countStudentsByMajor(students, "Software Engineering"));
-  console.log("Networking Students:", countStudentsByMajor(students, "Networking"));
-  console.log("Multimedia Students:", countStudentsByMajor(students, "Multimedia"));
+// Software Engineering students
+function getSoftwareEngineeringStudents(students: Student[]): number {
+  return students.filter(
+    student => student.major === "Software Engineering"
+  ).length;
 }
-printEnrollmentReport(students);
+
+// Networking students
+function getNetworkingStudents(students: Student[]): number {
+  return students.filter(
+    student => student.major === "Networking"
+  ).length;
+}
+
+// Multimedia students
+function getMultimediaStudents(students: Student[]): number {
+  return students.filter(
+    student => student.major === "Multimedia"
+  ).length;
+}
+
+// Display report
+console.log("Total Students:", getTotalStudents(students));
+console.log("Active Students:", getActiveStudents(students));
+console.log("Inactive Students:", getInactiveStudents(students));
+console.log(
+  "Software Engineering Students:",
+  getSoftwareEngineeringStudents(students)
+);
+console.log("Networking Students:", getNetworkingStudents(students));
+console.log("Multimedia Students:", getMultimediaStudents(students));

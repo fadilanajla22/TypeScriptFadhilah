@@ -23,10 +23,10 @@
  *  - Print a blank line after each floor.
  */
 
-for (let floor = 1; floor <= 5; floor++) {
-  for (let slot = 1; slot <= 20; slot++) {
-    console.log(`Floor ${floor} - Slot ${slot}`);
-  }
+for (let i = 1; i <= 5; i++) {
+    for (let j = 1; j <= 20; j++) {
+        console.log("Floor " + i + " - Slot " + j);
+    }
 
-  console.log("");
+    console.log();
 }

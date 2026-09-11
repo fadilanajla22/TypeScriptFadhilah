@@ -31,35 +31,41 @@ let countA = 0;
 let countB = 0;
 let countC = 0;
 let countD = 0;
+
 let highest = students[0].score;
 let lowest = students[0].score;
-let totalScore = 0;
+let total = 0;
 
 for (const student of students) {
-    totalScore += student.score;
+    const score = student.score;
 
-    if (student.score >= 90) {
+    total += score;
+
+    if (score >= 90) {
         countA++;
-    } else if (student.score >= 80) {
+    } else if (score >= 80) {
         countB++;
-    } else if (student.score >= 70) {
+    } else if (score >= 70) {
         countC++;
     } else {
         countD++;
     }
-    if (student.score > highest) {
-        highest = student.score;
+
+    if (score > highest) {
+        highest = score;
     }
-    if (student.score < lowest) {
-        lowest = student.score;
+
+    if (score < lowest) {
+        lowest = score;
     }
 }
-const averageScore = totalScore / students.length;
 
-console.log("Number of Grade A :", countA);
-console.log("Number of Grade B :", countB);
-console.log("Number of Grade C :", countC);
-console.log("Number of Grade D :", countD);
-console.log("Highest Score     :", highest);
-console.log("Lowest Score      :", lowest);
-console.log("Average Score     :", averageScore.toFixed(2));
+const average = total / students.length;
+
+console.log("A Students:", countA);
+console.log("B Students:", countB);
+console.log("C Students:", countC);
+console.log("D Students:", countD);
+console.log("Highest Score:", highest);
+console.log("Lowest Score:", lowest);
+console.log("Average Score:", average);

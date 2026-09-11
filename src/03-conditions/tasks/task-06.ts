@@ -24,30 +24,26 @@
  * 3. Display the patient's destination.
  */
 
-const PatientName: string = "Siti Rahma";
-const CriticalCondition: boolean = false;
-const HasAppointment: boolean = true;
-const Age: number = 67;
-const HasInsurance: boolean = false;
-const VeryCritical: boolean = false;
+const patientName = "Siti Rahma";
+const criticalCondition = false;
+const hasAppointment = true;
+const age = 67;
+const hasInsurance = true;
 
-if (CriticalCondition) {
-    if (VeryCritical) {
-        console.log("RED")
-        console.log ("Emergency Room");
-    }
-} else if (HasAppointment) {
-    if (Age >= 60) {
-        console.log("Priority Queue");
-        console.log("YELLOW");
-    } else {
-        console.log("Regular Queue");
-        console.log("GREEN")
-    }
+if (criticalCondition) {
+    console.log(`${patientName}: Emergency Room`);
 } else {
-    if (HasInsurance) {
-        console.log("Insurance Registration Counter")
+    if (hasAppointment) {
+        if (age >= 60) {
+            console.log(`${patientName}: Priority Queue`);
+        } else {
+            console.log(`${patientName}: Regular Queue`);
+        }
     } else {
-        console.log("General Registration Counter")
+        if (hasInsurance) {
+            console.log(`${patientName}: Insurance Registration Counter`);
+        } else {
+            console.log(`${patientName}: General Registration Counter`);
+        }
     }
 }
